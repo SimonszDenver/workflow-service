@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.objectone"
+    },
+    "jhipsterVersion": "6.10.1",
+    "applicationType": "microservice",
+    "baseName": "WorkflowService",
+    "packageName": "com.objectone",
+    "packageFolder": "com/objectone",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NDExYjI1YzBjNmZiYzRjNTc2NWEwODgxZmNmYThhODYxZDE5MjljMWVjNmIwZWEyMmNlZjNmYWQ1NjMzMDRlYTE1NjY3ZDRjMGZlNmEwOWM2ZjkxMzJiOTI0Njg3MmVmMDNhMjMyNGRiZmM3MTk2MGU0M2U2MGNjMTA2OGVjZTE=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1600253156620,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

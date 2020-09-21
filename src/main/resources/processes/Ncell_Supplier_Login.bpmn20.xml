@@ -1,34 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
   <process id="ncellsupplierLogin" name="Ncell Supplier Login" isExecutable="true">
-    <startEvent id="startEvent1" flowable:formFieldValidation="true"></startEvent>
-    <userTask id="sid-646619AB-A454-48C6-A62F-3AF815A4C4D2" name="Distributor Accept/Reject" flowable:formFieldValidation="true"></userTask>
-    <sequenceFlow id="sid-5211623B-9F40-4A73-A43D-27F2A16CD058" sourceRef="startEvent1" targetRef="sid-646619AB-A454-48C6-A62F-3AF815A4C4D2"></sequenceFlow>
-    <exclusiveGateway id="sid-8E3E2ADF-DB84-4138-A955-5A10D4D0FBDD"></exclusiveGateway>
-    <userTask id="sid-34479393-D02C-4770-961E-159DD33ACFDF" name="SO Accept/Reject" flowable:formFieldValidation="true"></userTask>
-    <exclusiveGateway id="sid-2F10C7BB-115A-4A4B-8187-075D2EAFDECB"></exclusiveGateway>
-    <sequenceFlow id="sid-15FAD523-2AD3-468B-BE20-0DBA9537E5DB" sourceRef="sid-34479393-D02C-4770-961E-159DD33ACFDF" targetRef="sid-2F10C7BB-115A-4A4B-8187-075D2EAFDECB"></sequenceFlow>
-    <serviceTask id="sid-F35B17E0-6C80-419A-935E-41CD3052F2D1" name="Notify Rejected"></serviceTask>
-    <endEvent id="sid-DBD03F4E-2BA7-41F9-A965-D858D1AE2280"></endEvent>
-    <sequenceFlow id="sid-072DC8E4-1220-4230-8EB5-6D6AA8FBB0DF" sourceRef="sid-F35B17E0-6C80-419A-935E-41CD3052F2D1" targetRef="sid-DBD03F4E-2BA7-41F9-A965-D858D1AE2280"></sequenceFlow>
-    <sequenceFlow id="sid-0ED6D057-94EB-41D8-8B78-D4625BDB184F" sourceRef="sid-646619AB-A454-48C6-A62F-3AF815A4C4D2" targetRef="sid-8E3E2ADF-DB84-4138-A955-5A10D4D0FBDD"></sequenceFlow>
-    <serviceTask id="sid-CC4BCBFF-24C8-495D-9EE7-DA8DF83A5EE5" name="Notify Accepted"></serviceTask>
-    <endEvent id="sid-61FC0AF0-2B63-49FE-99B0-492CA1E05285"></endEvent>
-    <sequenceFlow id="sid-032EBA5D-D05B-4898-903E-F6C42A451CC9" sourceRef="sid-CC4BCBFF-24C8-495D-9EE7-DA8DF83A5EE5" targetRef="sid-61FC0AF0-2B63-49FE-99B0-492CA1E05285"></sequenceFlow>
+      <startEvent id="startEvent1" flowable:formFieldValidation="true"/>
+      <userTask id="sid-646619AB-A454-48C6-A62F-3AF815A4C4D2" name="Distributor Accept/Reject"
+                flowable:formFieldValidation="true" flowable:assignee="${distributorId}"/>
+      <sequenceFlow id="sid-5211623B-9F40-4A73-A43D-27F2A16CD058" sourceRef="startEvent1"
+                    targetRef="sid-646619AB-A454-48C6-A62F-3AF815A4C4D2"/>
+      <exclusiveGateway id="sid-8E3E2ADF-DB84-4138-A955-5A10D4D0FBDD"/>
+      <userTask id="sid-34479393-D02C-4770-961E-159DD33ACFDF" name="SO Accept/Reject"
+                flowable:formFieldValidation="true" flowable:candidateGroups="ops"/>
+      <exclusiveGateway id="sid-2F10C7BB-115A-4A4B-8187-075D2EAFDECB"/>
+      <sequenceFlow id="sid-15FAD523-2AD3-468B-BE20-0DBA9537E5DB" sourceRef="sid-34479393-D02C-4770-961E-159DD33ACFDF"
+                    targetRef="sid-2F10C7BB-115A-4A4B-8187-075D2EAFDECB"/>
+      <serviceTask id="sid-F35B17E0-6C80-419A-935E-41CD3052F2D1" name="Notify Rejected" flowable:class="com.objectone.flowable.service.SORejectService"/>
+      <endEvent id="sid-DBD03F4E-2BA7-41F9-A965-D858D1AE2280"/>
+      <sequenceFlow id="sid-072DC8E4-1220-4230-8EB5-6D6AA8FBB0DF" sourceRef="sid-F35B17E0-6C80-419A-935E-41CD3052F2D1"
+                    targetRef="sid-DBD03F4E-2BA7-41F9-A965-D858D1AE2280"/>
+      <sequenceFlow id="sid-0ED6D057-94EB-41D8-8B78-D4625BDB184F" sourceRef="sid-646619AB-A454-48C6-A62F-3AF815A4C4D2"
+                    targetRef="sid-8E3E2ADF-DB84-4138-A955-5A10D4D0FBDD"/>
+      <serviceTask id="sid-CC4BCBFF-24C8-495D-9EE7-DA8DF83A5EE5" name="Notify Accepted" flowable:class="com.objectone.flowable.service.SOAcceptService"/>
+      <endEvent id="sid-61FC0AF0-2B63-49FE-99B0-492CA1E05285"/>
+      <sequenceFlow id="sid-032EBA5D-D05B-4898-903E-F6C42A451CC9" sourceRef="sid-CC4BCBFF-24C8-495D-9EE7-DA8DF83A5EE5"
+                    targetRef="sid-61FC0AF0-2B63-49FE-99B0-492CA1E05285"/>
     <sequenceFlow id="sid-9D9872D5-7278-41BA-BB07-13053A6A5A15" sourceRef="sid-2F10C7BB-115A-4A4B-8187-075D2EAFDECB" targetRef="sid-F35B17E0-6C80-419A-935E-41CD3052F2D1">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[!soAccept]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${soAction == 'rejected'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-38A61773-F827-4D26-ABF2-0212D7DE8372" sourceRef="sid-2F10C7BB-115A-4A4B-8187-075D2EAFDECB" targetRef="sid-CC4BCBFF-24C8-495D-9EE7-DA8DF83A5EE5">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[soAccept]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${soAction == 'accepted'}]]></conditionExpression>
     </sequenceFlow>
-    <serviceTask id="sid-3152C948-1A07-4DE5-8585-F084516EE222" name="Notify Distributor Rejected"></serviceTask>
-    <endEvent id="sid-9B75D254-AB5F-49E4-A76C-B407EB084680"></endEvent>
-    <sequenceFlow id="sid-3972B78A-7F38-4C76-86CF-0C5398D6D3C1" sourceRef="sid-3152C948-1A07-4DE5-8585-F084516EE222" targetRef="sid-9B75D254-AB5F-49E4-A76C-B407EB084680"></sequenceFlow>
+      <serviceTask id="sid-3152C948-1A07-4DE5-8585-F084516EE222" name="Notify Distributor Rejected" flowable:class="com.objectone.flowable.service.DistributorRejectService"/>
+      <endEvent id="sid-9B75D254-AB5F-49E4-A76C-B407EB084680"/>
+      <sequenceFlow id="sid-3972B78A-7F38-4C76-86CF-0C5398D6D3C1" sourceRef="sid-3152C948-1A07-4DE5-8585-F084516EE222"
+                    targetRef="sid-9B75D254-AB5F-49E4-A76C-B407EB084680"/>
     <sequenceFlow id="sid-824BD1FC-8B45-4EA7-B31E-B4FEBEB69E05" sourceRef="sid-8E3E2ADF-DB84-4138-A955-5A10D4D0FBDD" targetRef="sid-34479393-D02C-4770-961E-159DD33ACFDF">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[accept]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${action == 'accepted'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-BF1477E0-4550-40C5-A964-480C04454670" sourceRef="sid-8E3E2ADF-DB84-4138-A955-5A10D4D0FBDD" targetRef="sid-3152C948-1A07-4DE5-8585-F084516EE222">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[!accept]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${action == 'rejected'}]]></conditionExpression>
     </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_ncellsupplierLogin">

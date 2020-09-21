@@ -1,36 +1,17 @@
 package com.objectone.dto;
+import java.util.HashMap;
+import java.util.Map;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-public class Supplier {
-    private String firstName;
-    private String lastName;
+public class Seller {
     private String distributorId;
+    private Map<String, Object> sellerDetails;
 
-    public Supplier() {
+    public Seller() {
     }
 
-    public Supplier(String firstName, String lastName, String distributorId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Seller(String distributorId, Map<String, Object> sellerDetails) {
         this.distributorId = distributorId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.sellerDetails = sellerDetails;
     }
 
     public String getDistributorId() {
@@ -39,5 +20,20 @@ public class Supplier {
 
     public void setDistributorId(String distributorId) {
         this.distributorId = distributorId;
+    }
+
+    public Map<String, Object> getSellerDetails() {
+        return sellerDetails;
+    }
+
+    public void setSellerDetails(Map<String, Object> sellerDetails) {
+        this.sellerDetails = sellerDetails;
+    }
+
+    public Map<String, Object> convertToMap(){
+        Map<String, Object> sellerMap = new HashMap<>();
+        sellerMap.put("distributorId", this.distributorId);
+        sellerMap.put("sellerDetails", this.sellerDetails);
+        return sellerMap;
     }
 }

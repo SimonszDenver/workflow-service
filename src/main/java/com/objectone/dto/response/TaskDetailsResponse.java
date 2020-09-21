@@ -1,18 +1,18 @@
-package com.objectone.dto;
+package com.objectone.dto.response;
 
 import lombok.Data;
 
 import java.util.Map;
 
-public class TaskDetails {
-    String taskId;
-    String taskName;
-    Map<String, Object> taskData;
+public class TaskDetailsResponse {
+    private String taskId;
+    private String taskName;
+    private Map<String, Object> taskData;
 
-    public TaskDetails() {
+    public TaskDetailsResponse() {
     }
 
-    public TaskDetails(String taskId, String taskName, Map<String, Object> taskData) {
+    public TaskDetailsResponse(String taskId, String taskName, Map<String, Object> taskData) {
         this.taskId = taskId;
         this.taskName = taskName;
         this.taskData = taskData;

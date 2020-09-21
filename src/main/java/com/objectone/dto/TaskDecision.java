@@ -1,25 +1,15 @@
 package com.objectone.dto;
 
-public class DistributorDecision {
-    private String distributorId;
+public class TaskDecision {
     private String taskId;
-    private boolean decision;
+    private String action;
 
-    public DistributorDecision() {
+    public TaskDecision() {
     }
 
-    public DistributorDecision(String distributorId, String taskId, boolean decision) {
-        this.distributorId = distributorId;
+    public TaskDecision(String taskId, String action) {
         this.taskId = taskId;
-        this.decision = decision;
-    }
-
-    public String getDistributorId() {
-        return distributorId;
-    }
-
-    public void setDistributorId(String distributorId) {
-        this.distributorId = distributorId;
+        this.action = action;
     }
 
     public String getTaskId() {
@@ -30,11 +20,11 @@ public class DistributorDecision {
         this.taskId = taskId;
     }
 
-    public boolean isDecision() {
-        return decision;
+    public String getAction() {
+        return action;
     }
 
-    public void setDecision(boolean decision) {
-        this.decision = decision;
+    public void setAction(String action) {
+        this.action = action;
     }
 }

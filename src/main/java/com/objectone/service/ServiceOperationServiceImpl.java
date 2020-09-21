@@ -10,13 +10,12 @@ import org.flowable.task.api.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
-public class SOServiceImpl implements SOService {
+public class ServiceOperationServiceImpl implements ServiceOperationService {
 
     @Autowired
     private TaskService taskService;
@@ -24,17 +23,16 @@ public class SOServiceImpl implements SOService {
     @Autowired
     private Common common;
 
-    /* From Group  - API */
     @Override
-    public List<TaskDetailsResponse> getAllGroupTasks(/* Group */){
-        List<Task> soTasks = taskService.createTaskQuery().taskCandidateGroup("so").list();
+    public List<TaskDetailsResponse> getAllGroupTasks(String group){
+        List<Task> soTasks = taskService.createTaskQuery().taskCandidateGroup(group).list();
         return common.getTaskDetails(soTasks);
     }
 
     @Override
     public CommonResponse soDecision(TaskDecision taskDecision){
         Map<String, Object> variables = new HashMap<>();
-        variables.put(Const.SO_APPROVED, taskDecision.isDecision());
+        variables.put(Const.SO_ACTION, taskDecision.getAction());
         taskService.complete(taskDecision.getTaskId(), variables);
         return new CommonResponse(Const.SUCCESS);
     }

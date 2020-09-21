@@ -6,8 +6,8 @@ import com.objectone.dto.response.TaskDetailsResponse;
 
 import java.util.List;
 
-public interface SOService {
-    List<TaskDetailsResponse> getAllGroupTasks();
+public interface ServiceOperationService {
+    List<TaskDetailsResponse> getAllGroupTasks(String group);
 
     CommonResponse soDecision(TaskDecision taskDecision);
 }
